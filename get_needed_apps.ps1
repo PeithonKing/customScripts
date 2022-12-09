@@ -1,0 +1,13 @@
+winget install -e --id Discord.Discord
+winget install -e --id Microsoft.VisualStudioCode
+winget install -e --id Zoom.Zoom
+winget install -e --id Python.Python.3.9
+winget install -e --id WhatsApp.WhatsApp
+winget install -e --id Spotify.Spotify
+winget install -e --id ArduinoSA.IDE.rc
+winget install -e --id Microsoft.WindowsTerminal
+winget install -e --id Git.Git
+winget install -e --id VideoLAN.VLC
+winget install -e --id Microsoft.PowerShell
+winget install -e --id RARLab.WinRAR
+winget install -e --id Telegram.TelegramDesktop
