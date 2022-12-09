@@ -11,3 +11,4 @@ winget install -e --id VideoLAN.VLC
 winget install -e --id Microsoft.PowerShell
 winget install -e --id RARLab.WinRAR
 winget install -e --id Telegram.TelegramDesktop
+winget install -e --id GitHub.GitHubDesktop
