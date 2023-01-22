@@ -7,11 +7,12 @@ if ($args) {
 
 $main=@"
 \documentclass[reprint,amsmath,amssymb,aps]{revtex4-2}
+
 \input{settings.tex}
 
 \begin{document}
 
-    \title{Title}
+    \title{Title of the experiment}
 
     \author{Aritra Mukhopadhyay}
     \affiliation{
@@ -25,24 +26,27 @@ $main=@"
     \input{sections/abstract.tex}
     \maketitle
 
-    \input{sections/aim&aparatus.tex}
     \input{sections/theory.tex}
-    \input{sections/observations.tex}
-    \input{sections/calculation.tex}
-    \input{sections/error.tex}
-    \input{sections/conclusion.tex}
+    % \input{sections/observations.tex}
+    % \input{sections/calculation.tex}
+    % \input{sections/error.tex}
+    % \input{sections/conclusion.tex}
     
 
-
-    \bibliographystyle{apalike}
+    % \bibliographystyle{apalike}
     \bibliography{ref.bib}
     \nocite{*}
 \end{document}
-
 "@
 
 $settings=@"
-% importing packages
+% % % importing packages
+% \usepackage{multicol}  % multiple columns
+% \usepackage[utf8]{inputenc}  % input encoding
+% % \usepackage{multirow} 		% for tables
+% % \usepackage[italicdiff]{physics}  % physics
+% % \usepackage{longtable}
+% \usepackage{float}  % floating figures
 \usepackage{gensymb}  % math symbols
 \usepackage{indentfirst}  % indent first line of paragraph
 \usepackage{fancyvrb}  % verbatim
@@ -61,7 +65,11 @@ $settings=@"
 % defining new commands
 \newcommand{\angstrom}{\textup{\AA}}  % angstrom
 \DeclareMathOperator{\taninv}{tan^{-1}}
+% \DeclareUnicodeCharacter{2212}{-}
 \setlength{\columnsep}{0.5cm}  % column separation
+
+% defining graphics path
+% \graphicspath{ {./images/} }
 
 % the next 5 lines help in removing the ugly
 % boxes around links and making them look better
@@ -96,105 +104,25 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit mollitia illo 
 \end{abstract}
 "@
 
-$clean=@"
-import os
-
-# white_files = [
-#    
-# ]
-
-white_ext = [
-    ".py",
-    ".ipynb",
-    ".pdf",
-    ".xlsx",
-    ".csv",
-    ".tex",
-    ".bib",
-]
-
-l = os.listdir()
-
-
-def keep(file):
-    if os.path.isdir(file):
-        return True
-    if sum(map(lambda x: file.endswith(x), white_ext)):
-        return True
-    # if file in white_files:
-    #     return True
-    return False
-
-n = 0
-for file in l:
-    if not keep(file):
-        # print('Removing: ' + file)
-        os.remove(file)
-        n += 1
-
-# if n == 0:
-#     print('No files removed.')
-# else:
-#     print(f'{n} files removed.')
-"@
-
-$keepup=@"
-import os
-import time
-
-files = []
-
-for file in os.listdir():
-    if file.endswith(".tex"):
-        files.append(file)
-
-for file in os.listdir("sections"):
-    if file.endswith(".tex"):
-        files.append("sections/"+file)
-
-def get_file(file):
-	with open(file) as f:
-		return f.read()
-
-data = {file:get_file(file) for file in files}
-# data = {file:"" for file in files}
-
-while True:
-    for file in files:
-        with open(file) as f:
-            text = f.read()
-            if data[file] != text:
-                print(f"Change in {file} detected at {time.ctime()}. Compiling project... ", end="")
-                # print(list(difflib.ndiff(data[file], text)))
-                data[file] = text
-                t0 = time.time()
-                os.system("pdflatex main.tex --quiet")
-                print(f"Done in {(time.time() - t0):.2f}s!")
-                os.system("python clean.py")
-                break
-    
-    time.sleep(2)
-"@
-
-
-
-
-
 
 
 Write-Output $main > "$loc\main.tex"
 Write-Output $settings > "$loc\settings.tex"
 Write-Output $ref > "$loc\ref.bib"
-Write-Output $clean > "$loc\clean.py"
-Write-Output $keepup > "$loc\keep_up.py"
 mkdir images
 mkdir sections
 mkdir tables
 
+
+
 Write-Output $abstract > "$loc\sections\abstract.tex"
-Write-Output "\section{Aim \& Aparatus}`n`t$lorem" > "$loc\sections\aim&aparatus.tex"
+
+# \input{sections/theory.tex}
 Write-Output "\section{Theory}`n`t$lorem $lorem" > "$loc\sections\theory.tex"
+# \input{sections/observations.tex}
 Write-Output "\section{Observations}`n`t$lorem $lorem" > "$loc\sections\observations.tex"
 Write-Output "\section{Calculation}`n`t$lorem $lorem" > "$loc\sections\calculation.tex"
+# \input{sections/error.tex}
 Write-Output "\section{Error}`n`t$lorem $lorem" > "$loc\sections\error.tex"
+# \input{sections/conclusion.tex}
 Write-Output "\section{Conclusion}`n`t$lorem $lorem" > "$loc\sections\conclusion.tex"
