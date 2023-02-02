@@ -126,3 +126,4 @@ Write-Output "\section{Calculation}`n`t$lorem $lorem" > "$loc\sections\calculati
 Write-Output "\section{Error}`n`t$lorem $lorem" > "$loc\sections\error.tex"
 # \input{sections/conclusion.tex}
 Write-Output "\section{Conclusion}`n`t$lorem $lorem" > "$loc\sections\conclusion.tex"
+
