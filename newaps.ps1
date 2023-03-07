@@ -46,7 +46,7 @@ $settings=@"
 % % \usepackage{multirow} 		% for tables
 % % \usepackage[italicdiff]{physics}  % physics
 % % \usepackage{longtable}
-% \usepackage{float}  % floating figures
+\usepackage{float}  % floating figures
 \usepackage{gensymb}  % math symbols
 \usepackage{indentfirst}  % indent first line of paragraph
 \usepackage{fancyvrb}  % verbatim
@@ -126,4 +126,7 @@ Write-Output "\section{Calculation}`n`t$lorem $lorem" > "$loc\sections\calculati
 Write-Output "\section{Error}`n`t$lorem $lorem" > "$loc\sections\error.tex"
 # \input{sections/conclusion.tex}
 Write-Output "\section{Conclusion}`n`t$lorem $lorem" > "$loc\sections\conclusion.tex"
+
+code .
+exit
 
