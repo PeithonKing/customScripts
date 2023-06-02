@@ -1,9 +1,13 @@
 if($args -eq 'pi'){
     ssh pi@peithonking
 }elseif($args -eq 'lingaraj'){
-    ssh aritra@10.10.0.181
+    ssh aritra@10.10.0.171
 }elseif($args -eq 'mahalasa'){
-    ssh aritra@10.0.2.45
+    ssh aritra@10.10.0.176
+}elseif($args -eq 'jagannath'){
+    ssh aritra@10.10.0.170
+}elseif($args -eq 'anantabasudev'){
+    ssh aritra@10.10.0.173
 }else{
-    echo "No such Remote Found"
+    echo "Error: No such Remote Found"
 }
